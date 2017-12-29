@@ -4,7 +4,9 @@
 //------------------------------------------------------------------------------
 
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import {
+  Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon
+} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
@@ -31,14 +33,16 @@ class ReadableNav extends Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Readable</Link>
+            <Link to="/">
+              <Glyphicon glyph='home'/> Readable
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
             <LinkContainer to="/add-post">
-              <NavItem>Add Post</NavItem>
+              <NavItem><Glyphicon glyph='plus'/> Add Post</NavItem>
             </LinkContainer>
             <NavDropdown
               title="Post Categories"
