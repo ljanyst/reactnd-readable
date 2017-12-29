@@ -14,10 +14,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { categoryReducer } from './reducers/categories';
+import { postReducer } from './reducers/posts';
 
 const store = createStore(
   combineReducers({
-    categories: categoryReducer
+    categories: categoryReducer,
+    posts: postReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
