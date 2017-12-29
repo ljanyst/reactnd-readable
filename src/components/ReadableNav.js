@@ -44,7 +44,7 @@ class ReadableNav extends Component {
               title="Post Categories"
               id="basic-nav-dropdown">
               {this.props.categories.map(({name, path}) => (
-                <LinkContainer key={path} to={'/category/'+path}>
+                <LinkContainer key={path} to={'/'+path}>
                   <MenuItem>{name}</MenuItem>
                 </LinkContainer>
               ))}
