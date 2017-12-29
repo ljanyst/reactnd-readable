@@ -23,3 +23,15 @@ export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
   .then(res => res.json())
   .then(data => data.categories);
+
+//------------------------------------------------------------------------------
+// Get posts
+//------------------------------------------------------------------------------
+export const getPosts = (category) => {
+  var url = `${api}/posts`;
+  if(category)
+    url = `${api}/${category}/posts`;
+
+  return fetch(url, { headers })
+    .then(res => res.json());
+};
