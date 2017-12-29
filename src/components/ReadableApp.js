@@ -4,12 +4,16 @@
 //------------------------------------------------------------------------------
 
 import React, { Component } from 'react';
+import ReadableNav from './ReadableNav';
 
+//------------------------------------------------------------------------------
+// The Application
+//------------------------------------------------------------------------------
 class ReadableApp extends Component {
   render() {
     return (
       <div>
-        Hello, world!
+        <ReadableNav/>
       </div>
     );
   }
