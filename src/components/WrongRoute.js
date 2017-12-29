@@ -4,26 +4,24 @@
 //------------------------------------------------------------------------------
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import ReadableNav from './ReadableNav';
-import WrongRoute from './WrongRoute';
+import DirectionsIcon from 'react-icons/lib/md/directions';
 
 //------------------------------------------------------------------------------
-// The Application
+// Wrong route
 //------------------------------------------------------------------------------
-class ReadableApp extends Component {
+class WrongRoute extends Component {
+
+  //----------------------------------------------------------------------------
+  // Render the component
+  //----------------------------------------------------------------------------
   render() {
     return (
-      <div>
-        <ReadableNav/>
-        <div className='col-md-8 col-md-offset-2'>
-          <Switch>
-            <Route component={WrongRoute} />
-          </Switch>
-        </div>
+      <div align='center'>
+        <DirectionsIcon size={300} color='DimGrey'/>
+        <h3>It is not what you're looking for.</h3>
       </div>
     );
   }
 }
 
-export default ReadableApp;
+export default WrongRoute;
