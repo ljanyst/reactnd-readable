@@ -4,10 +4,23 @@ import './index.css';
 import ReadableApp from './components/ReadableApp';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { categoryReducer } from './reducers/categories';
+
+const store = createStore(
+  combineReducers({
+    categories: categoryReducer
+  }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <ReadableApp />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <ReadableApp />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'));
+
 registerServiceWorker();
