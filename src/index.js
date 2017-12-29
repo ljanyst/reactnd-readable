@@ -1,3 +1,8 @@
+//------------------------------------------------------------------------------
+// Author: Lukasz Janyst <lukasz@jany.st>
+// Date: 29.12.2017
+//------------------------------------------------------------------------------
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
