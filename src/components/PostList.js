@@ -78,7 +78,7 @@ class PostList extends Component {
           {this.props.posts.map(post => (
             <PostListItem
               key={post.id}
-              post={post} />
+              postId={post.id} />
           ))}
         </ListGroup>
       );
