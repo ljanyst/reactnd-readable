@@ -6,12 +6,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListGroup, Panel } from 'react-bootstrap';
+import sortBy from 'sort-by';
 
 import { categoryExists } from '../utils/helpers';
 import { getPosts } from '../utils/api';
 import { setPosts } from '../actions/posts';
 
 import PostListItem from './PostListItem';
+import SortSettings from './SortSettings';
 import WrongRoute from './WrongRoute';
 
 //------------------------------------------------------------------------------
@@ -87,6 +89,7 @@ class PostList extends Component {
     return (
       <div>
         <h2>{title}</h2>
+        <SortSettings type='posts'/>
         {list}
       </div>
     );
@@ -97,7 +100,10 @@ class PostList extends Component {
 // The redux connection
 //------------------------------------------------------------------------------
 function mapStateToProps(state) {
-  return state;
+  return {
+    ...state,
+    posts: state.posts.sort(sortBy(`-${state.settings.sortKey.posts}`))
+  };
 }
 
 function mapDispatchToProps(dispatch) {
