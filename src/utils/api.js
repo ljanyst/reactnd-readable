@@ -35,3 +35,28 @@ export const getPosts = (category) => {
   return fetch(url, { headers })
     .then(res => res.json());
 };
+
+//------------------------------------------------------------------------------
+// Vote on a post
+//------------------------------------------------------------------------------
+export const postVote = (id, up=true) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option: up ? 'upVote' : 'downVote' })
+  }).then(res => res.json());
+
+//------------------------------------------------------------------------------
+// Vote on a post
+//------------------------------------------------------------------------------
+export const postDelete = (id) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json());
