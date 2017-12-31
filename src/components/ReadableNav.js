@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { setCategories } from '../actions/categories';
-import { getCategories } from '../utils/api';
+import { categoryGetList } from '../utils/api';
 
 //------------------------------------------------------------------------------
 // The navigation bar
@@ -22,7 +22,9 @@ class ReadableNav extends Component {
   // Get the categories from the data server and store in redux
   //----------------------------------------------------------------------------
   componentDidMount() {
-    getCategories().then((categories) => this.props.setCategories(categories));
+    categoryGetList().then((categories) => {
+      this.props.setCategories(categories);
+    });
   }
 
   //----------------------------------------------------------------------------

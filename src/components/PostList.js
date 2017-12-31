@@ -9,7 +9,7 @@ import { ListGroup, Panel } from 'react-bootstrap';
 import sortBy from 'sort-by';
 
 import { categoryExists } from '../utils/helpers';
-import { getPosts } from '../utils/api';
+import { postGetList } from '../utils/api';
 import { postSetList } from '../actions/posts';
 
 import PostListItem from './PostListItem';
@@ -24,7 +24,7 @@ class PostList extends Component {
   // Mount the component
   //----------------------------------------------------------------------------
   componentDidMount() {
-    getPosts(this.props.match.params.category)
+    postGetList(this.props.match.params.category)
       .then(data => this.props.postSetList(data));
   }
 
@@ -35,7 +35,7 @@ class PostList extends Component {
     const thisCategory = this.props.match.params.category;
     const nextCategory = nextProps.match.params.category;
     if(thisCategory !== nextCategory)
-      getPosts(nextCategory)
+      postGetList(nextCategory)
         .then(data => this.props.postSetList(data));
   }
 
