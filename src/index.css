@@ -23,3 +23,7 @@
 .post-header {
     overflow: auto;
 }
+
+.form-group {
+    margin: 0;
+}
