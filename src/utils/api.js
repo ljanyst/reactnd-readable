@@ -19,7 +19,7 @@ const headers = {
 //------------------------------------------------------------------------------
 // Get categories
 //------------------------------------------------------------------------------
-export const getCategories = () =>
+export const categoryGetList = () =>
   fetch(`${api}/categories`, { headers })
   .then(res => res.json())
   .then(data => data.categories);
@@ -27,7 +27,7 @@ export const getCategories = () =>
 //------------------------------------------------------------------------------
 // Get posts
 //------------------------------------------------------------------------------
-export const getPosts = (category) => {
+export const postGetList = (category) => {
   var url = `${api}/posts`;
   if(category)
     url = `${api}/${category}/posts`;
