@@ -16,12 +16,14 @@ import { Provider } from 'react-redux';
 import { categoryReducer } from './reducers/categories';
 import { postReducer } from './reducers/posts';
 import { settingReducer } from './reducers/settings';
+import { commentReducer } from './reducers/comments';
 
 const store = createStore(
   combineReducers({
     categories: categoryReducer,
     posts: postReducer,
-    settings: settingReducer
+    settings: settingReducer,
+    comments: commentReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
