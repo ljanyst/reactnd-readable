@@ -19,3 +19,7 @@
 .content-panel {
     float: right;
 }
+
+.post-header {
+    overflow: auto;
+}
