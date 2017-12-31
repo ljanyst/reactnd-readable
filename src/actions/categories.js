@@ -3,20 +3,20 @@
 // Date: 29.12.2017
 //------------------------------------------------------------------------------
 
-export const ADD_CATEGORY = 'ADD_CATEGORY';
-export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const CATEGORY_ADD = 'CATEGORY_ADD';
+export const CATEGORY_SET_LIST = 'CATEGORY_SET_LIST';
 
-export function addCategory({ name, path }) {
+export function categoryAdd({ name, path }) {
   return {
-    type: ADD_CATEGORY,
+    type: CATEGORY_ADD,
     name,
     path
   };
 }
 
-export function setCategories(categoryList) {
+export function categorySetList(categoryList) {
   return {
-    type: SET_CATEGORIES,
+    type: CATEGORY_SET_LIST,
     categoryList
   };
 }
