@@ -3,14 +3,14 @@
 // Date: 29.12.2017
 //------------------------------------------------------------------------------
 
-export const POSTS_SET = 'POSTS_SET';
+export const POST_SET_LIST = 'POST_SET_LIST';
 export const POST_UP_VOTE = 'POST_UP_VOTE';
 export const POST_DOWN_VOTE = 'POST_DOWN_VOTE';
 export const POST_DELETE = 'POST_DELETE';
 
-export function setPosts(postList) {
+export function postSetList(postList) {
   return {
-    type: POSTS_SET,
+    type: POST_SET_LIST,
     postList
   };
 }
