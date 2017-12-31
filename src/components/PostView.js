@@ -14,6 +14,7 @@ import * as api from '../utils/api';
 import { postUpdate, postEdit } from '../actions/posts';
 
 import PostContentPanel from './PostContentPanel';
+import CommentList from './CommentList';
 import WrongRoute from './WrongRoute';
 import Loading from './Loading';
 
@@ -154,6 +155,8 @@ class PostView extends Component {
           <div>
             {body}
           </div>
+          <hr />
+          <CommentList postId={this.props.id}/>
         </Panel>
       </div>
     );
