@@ -46,6 +46,18 @@ export const postGetList = (category) => {
 };
 
 //------------------------------------------------------------------------------
+// Get post
+//------------------------------------------------------------------------------
+export const postGet = (id) =>
+  fetch(`${api}/posts/${id}`, { headers })
+  .then(responseHandler)
+  .then(data => {
+    if(Object.keys(data).length === 0)
+      throw Error('Got an empty object');
+    return data;
+  });
+
+//------------------------------------------------------------------------------
 // Vote on a post
 //------------------------------------------------------------------------------
 export const postVote = (id, up=true) =>
