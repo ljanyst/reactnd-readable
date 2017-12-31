@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------
 
 import {
-  POST_SET_LIST, POST_UP_VOTE, POST_DOWN_VOTE, POST_DELETE
+  POST_SET_LIST, POST_UP_VOTE, POST_DOWN_VOTE, POST_DELETE, POST_UPDATE
 } from '../actions/posts';
 
 export function postReducer(state = {}, action) {
@@ -30,6 +30,12 @@ export function postReducer(state = {}, action) {
     var newStateDelete = {...state};
     delete newStateDelete[action.id];
     return newStateDelete;
+
+  case POST_UPDATE:
+    return {
+      ...state,
+      [action.post.id]: action.post
+    };
 
   default:
     return state;

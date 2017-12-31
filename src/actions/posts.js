@@ -7,6 +7,7 @@ export const POST_SET_LIST = 'POST_SET_LIST';
 export const POST_UP_VOTE = 'POST_UP_VOTE';
 export const POST_DOWN_VOTE = 'POST_DOWN_VOTE';
 export const POST_DELETE = 'POST_DELETE';
+export const POST_UPDATE = 'POST_UPDATE';
 
 export function postSetList(postList) {
   return {
@@ -33,5 +34,12 @@ export function postDelete(id) {
   return {
     type: POST_DELETE,
     id
+  };
+}
+
+export function postUpdate(post) {
+  return {
+    type: POST_UPDATE,
+    post
   };
 }
