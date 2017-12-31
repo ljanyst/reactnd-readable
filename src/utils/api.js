@@ -17,11 +17,20 @@ const headers = {
 };
 
 //------------------------------------------------------------------------------
+// Fetch the response or throw an error if the response is not successful
+//------------------------------------------------------------------------------
+const responseHandler = (response) => {
+  if(!response.ok)
+    throw Error(response.error);
+  return response.json();
+};
+
+//------------------------------------------------------------------------------
 // Get categories
 //------------------------------------------------------------------------------
 export const categoryGetList = () =>
   fetch(`${api}/categories`, { headers })
-  .then(res => res.json())
+  .then(responseHandler)
   .then(data => data.categories);
 
 //------------------------------------------------------------------------------
@@ -33,7 +42,7 @@ export const postGetList = (category) => {
     url = `${api}/${category}/posts`;
 
   return fetch(url, { headers })
-    .then(res => res.json());
+    .then(responseHandler);
 };
 
 //------------------------------------------------------------------------------
@@ -47,7 +56,8 @@ export const postVote = (id, up=true) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ option: up ? 'upVote' : 'downVote' })
-  }).then(res => res.json());
+  })
+  .then(responseHandler);
 
 //------------------------------------------------------------------------------
 // Vote on a post
@@ -59,4 +69,5 @@ export const postDelete = (id) =>
       ...headers,
       'Content-Type': 'application/json'
     }
-  }).then(res => res.json());
+  })
+  .then(responseHandler);
