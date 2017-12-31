@@ -24,7 +24,8 @@ class PostContentPanel extends Component {
     editHref: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object
-    ])
+    ]),
+    afterDelete: PropTypes.func
   }
 
   //----------------------------------------------------------------------------
@@ -44,6 +45,8 @@ class PostContentPanel extends Component {
         })}
         onDelete={() => api.postDelete(post.id).then(() => {
           this.props.postDelete(post.id);
+          if(this.props.afterDelete)
+            this.props.afterDelete();
         })}
         onEdit={this.props.onEdit}
         editHref={this.props.editHref}
