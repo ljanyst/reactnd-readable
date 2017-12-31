@@ -97,3 +97,10 @@ export const postDelete = (id) =>
     }
   })
   .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Get comments
+//------------------------------------------------------------------------------
+export const commentGetList = (postId) =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+  .then(responseHandler);
