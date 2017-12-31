@@ -58,6 +58,20 @@ export const postGet = (id) =>
   });
 
 //------------------------------------------------------------------------------
+// Edit a post
+//------------------------------------------------------------------------------
+export const postEdit = (id, title, body) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title, body })
+  })
+  .then(responseHandler);
+
+//------------------------------------------------------------------------------
 // Vote on a post
 //------------------------------------------------------------------------------
 export const postVote = (id, up=true) =>
