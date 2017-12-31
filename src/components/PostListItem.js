@@ -9,9 +9,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ListGroupItem } from 'react-bootstrap';
 
-import ContentPanel from './ContentPanel';
-import { postUpVote, postDownVote, postDelete } from '../actions/posts';
-import * as api from '../utils/api';
+import PostContentPanel from './PostContentPanel';
 
 //------------------------------------------------------------------------------
 // Post List
@@ -32,18 +30,8 @@ class PostListItem extends Component {
     return (
       <ListGroupItem>
         <div className='list-item'>
-          <ContentPanel
-            itemId={post.id}
-            score={post.voteScore}
-            onUpVote={() => api.postVote(post.id, true).then(() => {
-              this.props.postUpVote(post.id);
-            })}
-            onDownVote={() => api.postVote(post.id, false).then(() => {
-              this.props.postDownVote(post.id);
-            })}
-            onDelete={() => api.postDelete(post.id).then(() => {
-              this.props.postDelete(post.id);
-            })}
+          <PostContentPanel
+            postId={post.id}
             editHref={{
               pathname: `${post.category}/${post.id}`,
               state: { edit: true }
@@ -72,11 +60,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    postUpVote: (id) => dispatch(postUpVote(id)),
-    postDownVote: (id) => dispatch(postDownVote(id)),
-    postDelete: (id) => dispatch(postDelete(id))
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostListItem);
