@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import ReadableNav from './ReadableNav';
 import WrongRoute from './WrongRoute';
 import PostList from './PostList';
+import PostView from './PostView';
 
 //------------------------------------------------------------------------------
 // The Application
@@ -20,6 +21,7 @@ class ReadableApp extends Component {
 
         <Switch>
           <Route exact path='/' component={PostList} />
+          <Route path='/:category/:postId' component={PostView} />
           <Route path='/:category' component={PostList} />
           <Route component={WrongRoute} />
         </Switch>
