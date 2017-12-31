@@ -8,6 +8,7 @@ export const POST_UP_VOTE = 'POST_UP_VOTE';
 export const POST_DOWN_VOTE = 'POST_DOWN_VOTE';
 export const POST_DELETE = 'POST_DELETE';
 export const POST_UPDATE = 'POST_UPDATE';
+export const POST_EDIT = 'POST_EDIT';
 
 export function postSetList(postList) {
   return {
@@ -41,5 +42,14 @@ export function postUpdate(post) {
   return {
     type: POST_UPDATE,
     post
+  };
+}
+
+export function postEdit(id, title, body) {
+  return {
+    type: POST_EDIT,
+    id,
+    title,
+    body
   };
 }

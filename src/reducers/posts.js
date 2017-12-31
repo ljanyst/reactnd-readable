@@ -4,7 +4,8 @@
 //------------------------------------------------------------------------------
 
 import {
-  POST_SET_LIST, POST_UP_VOTE, POST_DOWN_VOTE, POST_DELETE, POST_UPDATE
+  POST_SET_LIST, POST_UP_VOTE, POST_DOWN_VOTE, POST_DELETE, POST_UPDATE,
+  POST_EDIT
 } from '../actions/posts';
 
 export function postReducer(state = {}, action) {
@@ -35,6 +36,16 @@ export function postReducer(state = {}, action) {
     return {
       ...state,
       [action.post.id]: action.post
+    };
+
+  case POST_EDIT:
+    return {
+      ...state,
+      [action.id]: {
+        ...state[action.id],
+        title: action.title,
+        body: action.body
+      }
     };
 
   default:
