@@ -44,6 +44,10 @@ class PostListItem extends Component {
             onDelete={() => api.postDelete(post.id).then(() => {
               this.props.postDelete(post.id);
             })}
+            editHref={{
+              pathname: `${post.category}/${post.id}`,
+              state: { edit: true }
+            }}
             />
           <strong>
             <Link to={`${post.category}/${post.id}`}>
