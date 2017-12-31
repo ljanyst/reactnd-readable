@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
-import { setCategories } from '../actions/categories';
+import { categorySetList } from '../actions/categories';
 import { categoryGetList } from '../utils/api';
 
 //------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ class ReadableNav extends Component {
   //----------------------------------------------------------------------------
   componentDidMount() {
     categoryGetList().then((categories) => {
-      this.props.setCategories(categories);
+      this.props.categorySetList(categories);
     });
   }
 
@@ -71,7 +71,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setCategories: (data) => dispatch(setCategories(data))
+    categorySetList: (data) => dispatch(categorySetList(data))
   };
 }
 
