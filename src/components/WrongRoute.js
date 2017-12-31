@@ -16,9 +16,11 @@ class WrongRoute extends Component {
   //----------------------------------------------------------------------------
   render() {
     return (
-      <div align='center'>
-        <DirectionsIcon size={300} color='DimGrey'/>
-        <h3>It is not what you're looking for.</h3>
+      <div className='col-md-8 col-md-offset-2'>
+        <div align='center'>
+          <DirectionsIcon size={300} color='DimGrey'/>
+          <h3>It is not what you're looking for.</h3>
+        </div>
       </div>
     );
   }

@@ -17,13 +17,12 @@ class ReadableApp extends Component {
     return (
       <div>
         <ReadableNav/>
-        <div className='col-md-8 col-md-offset-2'>
-          <Switch>
-            <Route exact path='/' component={PostList} />
-            <Route path='/:category' component={PostList} />
-            <Route component={WrongRoute} />
-          </Switch>
-        </div>
+
+        <Switch>
+          <Route exact path='/' component={PostList} />
+          <Route path='/:category' component={PostList} />
+          <Route component={WrongRoute} />
+        </Switch>
       </div>
     );
   }

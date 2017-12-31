@@ -87,7 +87,7 @@ class PostList extends Component {
     // Return the final component
     //--------------------------------------------------------------------------
     return (
-      <div>
+      <div className='col-md-8 col-md-offset-2'>
         <h2>{title}</h2>
         <SortSettings type='posts'/>
         {list}
