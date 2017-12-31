@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ListGroupItem } from 'react-bootstrap';
-import findBy from 'array-find-by';
 
 import ContentPanel from './ContentPanel';
 import { postUpVote, postDownVote, postDelete } from '../actions/posts';
@@ -63,9 +62,8 @@ class PostListItem extends Component {
 // The redux connection
 //------------------------------------------------------------------------------
 function mapStateToProps(state, ownProps) {
-  const match = findBy.call(state.posts, 'id', ownProps.postId);
   return {
-    ...state.posts[match[1]]
+    ...state.posts[ownProps.postId]
   };
 }
 

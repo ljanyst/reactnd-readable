@@ -6,7 +6,6 @@
 import {
   POST_SET_LIST, POST_UP_VOTE, POST_DOWN_VOTE, POST_DELETE
 } from '../actions/posts';
-import { cfm } from '../utils/helpers';
 
 export function postReducer(state = {}, action) {
   switch(action.type) {
@@ -18,13 +17,19 @@ export function postReducer(state = {}, action) {
     }, {});
 
   case POST_UP_VOTE:
-    return cfm(state, action.id, (post) => { post.voteScore++; });
+    var newStateVUp = {...state};
+    newStateVUp[action.id].voteScore++;
+    return newStateVUp;
 
   case POST_DOWN_VOTE:
-    return cfm(state, action.id, (post) => { post.voteScore--; });
+    var newStateVDown = {...state};
+    newStateVDown[action.id].voteScore--;
+    return newStateVDown;
 
   case POST_DELETE:
-    return state.filter(post => post.id !== action.id);
+    var newStateDelete = {...state};
+    delete newStateDelete[action.id];
+    return newStateDelete;
 
   default:
     return state;

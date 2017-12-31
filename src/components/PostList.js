@@ -10,7 +10,7 @@ import sortBy from 'sort-by';
 
 import { categoryExists } from '../utils/helpers';
 import { getPosts } from '../utils/api';
-import { setPosts } from '../actions/posts';
+import { postSetList } from '../actions/posts';
 
 import PostListItem from './PostListItem';
 import SortSettings from './SortSettings';
@@ -25,7 +25,7 @@ class PostList extends Component {
   //----------------------------------------------------------------------------
   componentDidMount() {
     getPosts(this.props.match.params.category)
-      .then(data => this.props.setPosts(data));
+      .then(data => this.props.postSetList(data));
   }
 
   //----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class PostList extends Component {
     const nextCategory = nextProps.match.params.category;
     if(thisCategory !== nextCategory)
       getPosts(nextCategory)
-        .then(data => this.props.setPosts(data));
+        .then(data => this.props.postSetList(data));
   }
 
   //----------------------------------------------------------------------------
@@ -102,13 +102,15 @@ class PostList extends Component {
 function mapStateToProps(state) {
   return {
     ...state,
-    posts: state.posts.sort(sortBy(`-${state.settings.sortKey.posts}`))
+    posts: Object.keys(state.posts).map((key) => {
+      return state.posts[key];
+    }).sort(sortBy(`-${state.settings.sortKey.posts}`))
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setPosts: (data) => dispatch(setPosts(data))
+    postSetList: (data) => dispatch(postSetList(data))
   };
 }
 
