@@ -14,10 +14,18 @@ import {
 // A bootstrap button that works well with react router
 //------------------------------------------------------------------------------
 function RoutedButton(props) {
+  const tooltip = (
+    <Tooltip id={`tooltip-${props.itemId}-${props.name}`}>
+      {props.tooltip}
+    </Tooltip>
+  );
+
   const button = (
-    <Button onClick={() => { if(props.onClick) props.onClick(); }}>
-      <Glyphicon glyph={props.glyph} />
-    </Button>
+    <OverlayTrigger placement='top' overlay={tooltip}>
+      <Button onClick={() => { if(props.onClick) props.onClick(); }}>
+        <Glyphicon glyph={props.glyph} />
+      </Button>
+    </OverlayTrigger>
   );
   if(!props.href)
     return button;
@@ -66,9 +74,6 @@ class ContentPanel extends Component {
     const tooltipVoteDown = (
       <Tooltip id={'tooltip-'+itemId+'-vote-down'}>Vote Down.</Tooltip>
     );
-    const tooltipEdit = (
-      <Tooltip id={'tooltip-'+itemId+'-edit'}>Edit.</Tooltip>
-    );
     const tooltipDelete = (
       <Tooltip id={'tooltip-'+itemId+'-delete'}>Delete.</Tooltip>
     );
@@ -106,12 +111,13 @@ class ContentPanel extends Component {
     const controlButtons = (
       <ButtonGroup bsSize="xsmall">
 
-        <OverlayTrigger placement='top' overlay={tooltipEdit}>
-          <RoutedButton
-            glyph='pencil'
-            href={this.props.editHref}
-            onClick={this.props.onEdit}/>
-        </OverlayTrigger>
+        <RoutedButton
+          itemId={this.props.itemId}
+          name='edit'
+          tooltip='Edit.'
+          glyph='pencil'
+          href={this.props.editHref}
+          onClick={this.props.onEdit}/>
 
         <OverlayTrigger placement='top' overlay={tooltipDelete}>
           <Button onClick={() => { this.props.onDelete(); }}>
