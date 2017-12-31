@@ -41,7 +41,11 @@ class ContentPanel extends Component {
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func
+    onEdit: PropTypes.func,
+    editHref: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object
+    ])
   }
 
   //----------------------------------------------------------------------------
