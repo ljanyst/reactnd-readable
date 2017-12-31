@@ -5,9 +5,28 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   ButtonGroup, Button, Glyphicon, OverlayTrigger, Tooltip, ButtonToolbar
 } from 'react-bootstrap';
+
+//------------------------------------------------------------------------------
+// A bootstrap button that works well with react router
+//------------------------------------------------------------------------------
+function RoutedButton(props) {
+  const button = (
+    <Button onClick={() => { if(props.onClick) props.onClick(); }}>
+      <Glyphicon glyph={props.glyph} />
+    </Button>
+  );
+  if(!props.href)
+    return button;
+
+  return (
+    <LinkContainer to={props.href}>
+      {button}
+    </LinkContainer>);
+}
 
 //------------------------------------------------------------------------------
 // Sort Settings
@@ -22,8 +41,7 @@ class ContentPanel extends Component {
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func,
-    editHref: PropTypes.string
+    onEdit: PropTypes.func
   }
 
   //----------------------------------------------------------------------------
@@ -85,15 +103,10 @@ class ContentPanel extends Component {
       <ButtonGroup bsSize="xsmall">
 
         <OverlayTrigger placement='top' overlay={tooltipEdit}>
-          <Button
-            onClick={() => {
-              if(this.props.onEdit)
-                this.props.onEdit();
-            }}
+          <RoutedButton
+            glyph='pencil'
             href={this.props.editHref}
-            >
-            <Glyphicon glyph='pencil'/>
-          </Button>
+            onClick={this.props.onEdit}/>
         </OverlayTrigger>
 
         <OverlayTrigger placement='top' overlay={tooltipDelete}>
