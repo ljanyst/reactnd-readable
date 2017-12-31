@@ -27,3 +27,17 @@
 .form-group {
     margin: 0;
 }
+
+.comment-commit {
+    text-align: right;
+}
+
+.comment-commit {
+    text-align: right;
+}
+
+.comment-none {
+    text-align: center;
+    font-size: large;
+    margin: 1em;
+}
