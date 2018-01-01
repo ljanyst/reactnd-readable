@@ -103,7 +103,10 @@ class PostAdd extends Component {
     const submitButton = (
       <div className='form-commit'>
         <Button
-          disabled={false}
+          disabled={
+            this.state.author && this.state.title && this.state.body && this.state.category !== 'none'
+              ? false : true
+          }
           bsSize="small"
           onClick={() => {
             const post = {
