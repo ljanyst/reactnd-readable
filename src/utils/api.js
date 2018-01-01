@@ -86,7 +86,7 @@ export const postVote = (id, up=true) =>
   .then(responseHandler);
 
 //------------------------------------------------------------------------------
-// Vote on a post
+// Delete a post
 //------------------------------------------------------------------------------
 export const postDelete = (id) =>
   fetch(`${api}/posts/${id}`, {
@@ -103,4 +103,45 @@ export const postDelete = (id) =>
 //------------------------------------------------------------------------------
 export const commentGetList = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
+  .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Edit a comment
+//------------------------------------------------------------------------------
+export const commentEdit = (id, timestamp, body) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ timestamp, body })
+  })
+  .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Vote on a comment
+//------------------------------------------------------------------------------
+export const commentVote = (id, up=true) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option: up ? 'upVote' : 'downVote' })
+  })
+  .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Delete a comment
+//------------------------------------------------------------------------------
+export const commentDelete = (id) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    }
+  })
   .then(responseHandler);
