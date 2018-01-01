@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormControl, Button, Glyphicon } from 'react-bootstrap';
+import { FormControl, FormGroup, Button, Glyphicon } from 'react-bootstrap';
 
 import * as api from '../utils/api';
 import { commentAdd } from '../actions/comments';
@@ -38,41 +38,45 @@ class CommentInput extends Component {
   render() {
     return (
       <div>
-        <FormControl
-          value={this.state.author}
-          type='text'
-          placeholder="Write down your name..."
-          onChange={(event) => this.setState({author: event.target.value})}
-          />
+        <div className='comment-inpu'>
+          <FormControl
+            value={this.state.author}
+            type='text'
+            placeholder="Write down your name..."
+            onChange={(event) => this.setState({author: event.target.value})}
+            />
+        </div>
+        <div className='comment-input'>
           <FormControl
             value={this.state.body}
             componentClass="textarea"
             placeholder="Write a new comment..."
             onChange={(event) => this.setState({body: event.target.value})}
             />
-          <div className='comment-commit'>
-            <Button
-              disabled={this.state.author && this.state.body ? false : true}
-              bsSize='small'
-              onClick={() => {
-                const comment = {
-                  id: makeId(24),
-                  timestamp: Date.now(),
-                  body: this.state.body,
-                  author: this.state.author,
-                  parentId: this.props.postId
-                };
-                api.commentAdd(comment)
-                  .then(() => {
-                    this.props.commentAdd({...comment, voteScore: 0});
-                  });
-                this.setState({body: '', author: ''});
-              }}
-              >
-              <Glyphicon glyph='comment'/>&nbsp;
-              Post
-            </Button>
-          </div>
+        </div>
+        <div className='comment-commit'>
+          <Button
+            disabled={this.state.author && this.state.body ? false : true}
+            bsSize='small'
+            onClick={() => {
+              const comment = {
+                id: makeId(24),
+                timestamp: Date.now(),
+                body: this.state.body,
+                author: this.state.author,
+                parentId: this.props.postId
+              };
+              api.commentAdd(comment)
+                .then(() => {
+                  this.props.commentAdd({...comment, voteScore: 0});
+                });
+              this.setState({body: '', author: ''});
+            }}
+            >
+            <Glyphicon glyph='comment'/>&nbsp;
+            Post
+          </Button>
+        </div>
       </div>
     );
   }
