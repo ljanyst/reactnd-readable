@@ -55,7 +55,6 @@ class CommentInput extends Component {
               disabled={this.state.author && this.state.body ? false : true}
               bsSize='small'
               onClick={() => {
-                console.log(makeId(24));
                 const comment = {
                   id: makeId(24),
                   timestamp: Date.now(),
