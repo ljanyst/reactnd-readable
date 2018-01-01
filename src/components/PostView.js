@@ -36,8 +36,15 @@ class PostView extends Component {
   // Mount the component
   //----------------------------------------------------------------------------
   componentDidMount() {
+    const edit = this.props.location.state && this.props.location.state.edit
+          ? true
+          : false;
+
     api.postGet(this.props.match.params.postId)
-      .then(data => this.props.postUpdate(data))
+      .then(data => {
+        this.props.postUpdate(data);
+        this.setState({editing: edit});
+      })
       .catch(() => this.setState({ fetchError: true }));
 
     this.setState({
@@ -83,14 +90,7 @@ class PostView extends Component {
     //--------------------------------------------------------------------------
     // Edition
     //--------------------------------------------------------------------------
-    const edit = this.props.location.state && this.props.location.state.edit
-          ? true
-          : false;
-    if(this.props.location.state)
-      this.props.location.state.edit = false;
-
-    if(this.state.editing || edit) {
-
+    if(this.state.editing) {
       //------------------------------------------------------------------------
       // Edit header
       //------------------------------------------------------------------------
