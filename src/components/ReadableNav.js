@@ -8,6 +8,7 @@ import {
   Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { categorySetList } from '../actions/categories';
@@ -75,4 +76,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReadableNav);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReadableNav));
