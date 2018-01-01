@@ -145,3 +145,17 @@ export const commentDelete = (id) =>
     }
   })
   .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Add a comment
+//------------------------------------------------------------------------------
+export const commentAdd = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(comment)
+  })
+  .then(responseHandler);
