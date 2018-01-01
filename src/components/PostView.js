@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
-  Panel, FormControl, Button, Form, FormGroup, Col
+  Panel, FormControl, Button, Form, FormGroup, Col, Glyphicon
 } from 'react-bootstrap';
 
 import * as api from '../utils/api';
@@ -104,6 +104,7 @@ class PostView extends Component {
                         this.setState( {editing: false } );
                       });
                   }}>
+                  <Glyphicon glyph='ok'/>&nbsp;
                   Save
                 </Button>
               </Col>
