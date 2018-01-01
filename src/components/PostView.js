@@ -138,6 +138,7 @@ class PostView extends Component {
         <div>
           <FormGroup controlId="formBody">
             <FormControl
+              style={{ height: 200 }}
               componentClass="textarea"
               onChange={(event) => this.setState({body: event.target.value})}
               value={this.state.body} />
