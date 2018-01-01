@@ -23,14 +23,33 @@ class CommentListItem extends Component {
   // The state
   //----------------------------------------------------------------------------
   state = {
-    editing: false
-  }
+    editing: false,
+    body: ''
+  };
 
   //----------------------------------------------------------------------------
   // Property types
   //----------------------------------------------------------------------------
   static propTypes = {
     commentId: PropTypes.string.isRequired
+  };
+
+  //----------------------------------------------------------------------------
+  // Mount the component
+  //----------------------------------------------------------------------------
+  componentDidMount() {
+    this.setState({
+      body: this.props.body
+    });
+  }
+
+  //----------------------------------------------------------------------------
+  // Update the state if props changed
+  //----------------------------------------------------------------------------
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      body: nextProps.body
+    });
   }
 
   //----------------------------------------------------------------------------
@@ -77,15 +96,16 @@ class CommentListItem extends Component {
         <div>
           <FormControl
             componentClass="textarea"
-            defaultValue={this.props.body}
-            inputRef={input => this.body = input}
+            value={this.state.body}
+            onChange={(event) => this.setState({body: event.target.value})}
             />
             <div className='comment-commit'>
               <Button
+                disabled={this.state.body ? false : true}
                 bsSize="small"
                 onClick={() => {
                   const now = Date.now();
-                  const body = this.body.value;
+                  const body = this.state.body;
                   api.commentEdit(this.props.id, now, body)
                     .then(() => {
                       this.setState({editing: false});
