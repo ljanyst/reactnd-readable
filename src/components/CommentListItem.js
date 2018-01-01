@@ -6,8 +6,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormControl, Button } from 'react-bootstrap';
-//import { Link } from 'react-router-dom';
+import { FormControl, Button, Glyphicon } from 'react-bootstrap';
+
+import * as api from '../utils/api';
+import {
+  commentEdit, commentUpVote, commentDownVote, commentDelete
+} from '../actions/comments';
 
 import ContentPanel from './ContentPanel';
 
@@ -43,9 +47,18 @@ class CommentListItem extends Component {
             <ContentPanel
               itemId={this.props.id}
               score={this.props.voteScore}
-              onUpVote={() => null}
-              onDownVote={() => null}
-              onDelete={() => null}
+              onUpVote={() => {
+                api.commentVote(this.props.id, true)
+                  .then(() => this.props.commentUpVote(this.props.id));
+              }}
+              onDownVote={() => {
+                api.commentVote(this.props.id, false)
+                  .then(() => this.props.commentDownVote(this.props.id));
+              }}
+              onDelete={() => {
+                api.commentDelete(this.props.id)
+                  .then(() => this.props.commentDelete(this.props.id));
+              }}
               onEdit={() => this.setState({editing: true})}
               />
             <strong>{this.props.author}</strong> wrote:
@@ -71,8 +84,15 @@ class CommentListItem extends Component {
               <Button
                 bsSize="small"
                 onClick={() => {
-                  this.setState({editing: false});
+                  const now = Date.now();
+                  const body = this.body.value;
+                  api.commentEdit(this.props.id, now, body)
+                    .then(() => {
+                      this.setState({editing: false});
+                      this.props.commentEdit(this.props.id, now, body);
+                    });
                 }}>
+                <Glyphicon glyph='ok'/>&nbsp;
                 Done editing
               </Button>
             </div>
@@ -92,7 +112,14 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    commentEdit: (id, timestamp, body) => {
+      dispatch(commentEdit(id, timestamp, body));
+    },
+    commentUpVote: (id) => dispatch(commentUpVote(id)),
+    commentDownVote: (id) => dispatch(commentDownVote(id)),
+    commentDelete: (id) => dispatch(commentDelete(id))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentListItem);
