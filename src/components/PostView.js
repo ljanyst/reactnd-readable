@@ -5,7 +5,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import {
   Panel, FormControl, Button, Form, FormGroup, Col, Glyphicon
 } from 'react-bootstrap';
@@ -27,7 +26,9 @@ class PostView extends Component {
   //----------------------------------------------------------------------------
   state = {
     editing: false,
-    fetchError: false
+    fetchError: false,
+    title: '',
+    author: ''
   }
 
   //----------------------------------------------------------------------------
@@ -37,6 +38,11 @@ class PostView extends Component {
     api.postGet(this.props.match.params.postId)
       .then(data => this.props.postUpdate(data))
       .catch(() => this.setState({ fetchError: true }));
+
+    this.setState({
+      title: this.props.title,
+      body: this.props.body
+    });
   }
 
   //----------------------------------------------------------------------------
@@ -49,6 +55,11 @@ class PostView extends Component {
       api.postGet(nextPostId)
         .then(data => this.props.postUpdate(data))
         .catch(() => this.setState({ fetchError: true }));
+
+    this.setState({
+      title: nextProps.title,
+      body: nextProps.body
+    });
   }
 
   //----------------------------------------------------------------------------
@@ -78,6 +89,7 @@ class PostView extends Component {
       this.props.location.state.edit = false;
 
     if(this.state.editing || edit) {
+
       //------------------------------------------------------------------------
       // Edit header
       //------------------------------------------------------------------------
@@ -88,15 +100,20 @@ class PostView extends Component {
               <Col sm={10}>
                 <FormControl
                   type='text'
-                  inputRef={input => this.title = input}
-                  defaultValue={this.props.title} />
+                  bsSize='small'
+                  onChange={(event) => {
+                    this.setState({title: event.target.value});
+                  }}
+                  value={this.state.title} />
               </Col>
               <Col sm={2}>
                 <Button
                   block
+                  disabled={this.state.body && this.state.title ? false : true}
+                  bsSize='small'
                   onClick={() => {
-                    const title = this.title.value;
-                    const body = this.body.value;
+                    const title = this.state.title;
+                    const body = this.state.body;
                     const id = this.props.id;
                     api.postEdit(id, title, body)
                       .then(() => {
@@ -121,8 +138,8 @@ class PostView extends Component {
           <FormGroup controlId="formBody">
             <FormControl
               componentClass="textarea"
-              inputRef={input => this.body = input}
-              defaultValue={this.props.body} />
+              onChange={(event) => this.setState({body: event.target.value})}
+              value={this.state.body} />
           </FormGroup>
         </div>
       );
@@ -181,4 +198,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostView));
+export default connect(mapStateToProps, mapDispatchToProps)(PostView);
