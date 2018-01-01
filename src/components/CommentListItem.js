@@ -99,7 +99,7 @@ class CommentListItem extends Component {
             value={this.state.body}
             onChange={(event) => this.setState({body: event.target.value})}
             />
-            <div className='comment-commit'>
+            <div className='form-commit'>
               <Button
                 disabled={this.state.body ? false : true}
                 bsSize="small"

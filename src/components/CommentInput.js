@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { FormControl, FormGroup, Button, Glyphicon } from 'react-bootstrap';
+import { FormControl, Button, Glyphicon } from 'react-bootstrap';
 
 import * as api from '../utils/api';
 import { commentAdd } from '../actions/comments';
@@ -46,7 +46,7 @@ class CommentInput extends Component {
             onChange={(event) => this.setState({author: event.target.value})}
             />
         </div>
-        <div className='comment-input'>
+        <div className='form-input'>
           <FormControl
             value={this.state.body}
             componentClass="textarea"
@@ -54,7 +54,7 @@ class CommentInput extends Component {
             onChange={(event) => this.setState({body: event.target.value})}
             />
         </div>
-        <div className='comment-commit'>
+        <div className='form-commit'>
           <Button
             disabled={this.state.author && this.state.body ? false : true}
             bsSize='small'

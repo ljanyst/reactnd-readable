@@ -28,17 +28,13 @@
     margin: 0;
 }
 
-.comment-commit {
-    text-align: right;
-}
-
-.comment-commit {
+.form-commit {
     margin-top: 0.5em;
     margin-bottom: 0.25em;
     text-align: right;
 }
 
-.comment-input {
+.form-input {
     margin-top: 0.5em;
     margin-bottom: 0.25em;
 }
