@@ -159,3 +159,17 @@ export const commentAdd = (comment) =>
     body: JSON.stringify(comment)
   })
   .then(responseHandler);
+
+//------------------------------------------------------------------------------
+// Add a post
+//------------------------------------------------------------------------------
+export const postAdd = (post) =>
+  fetch(`${api}/posts`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(post)
+  })
+  .then(responseHandler);
