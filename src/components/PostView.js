@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import {
   Panel, FormControl, Button, Form, FormGroup, Col, Glyphicon
 } from 'react-bootstrap';
@@ -198,4 +199,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostView);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostView));
