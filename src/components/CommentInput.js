@@ -68,7 +68,7 @@ class CommentInput extends Component {
               };
               api.commentAdd(comment)
                 .then(() => {
-                  this.props.commentAdd({...comment, voteScore: 0});
+                  this.props.commentAdd({...comment, voteScore: 1});
                 });
               this.setState({body: '', author: ''});
             }}
