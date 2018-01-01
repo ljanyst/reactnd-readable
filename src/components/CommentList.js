@@ -41,7 +41,7 @@ class CommentList extends Component {
   render() {
     return (
       <div>
-        <h4>Comments:</h4>
+        <h4>Comments ({this.props.comments.length}):</h4>
         <Table striped responsive bordered hover>
           <tbody>
             <tr>
