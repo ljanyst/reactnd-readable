@@ -5,7 +5,7 @@
 
 import {
   COMMENT_SET_LIST, COMMENT_UP_VOTE, COMMENT_DOWN_VOTE, COMMENT_DELETE,
-  COMMENT_EDIT
+  COMMENT_EDIT, COMMENT_ADD
 } from '../actions/comments';
 
 export function commentReducer(state = {}, action) {
@@ -40,6 +40,12 @@ export function commentReducer(state = {}, action) {
         timestamp: action.timestamp,
         body: action.body
       }
+    };
+
+  case COMMENT_ADD:
+    return {
+      ...state,
+      [action.comment.id]: action.comment
     };
 
   default:

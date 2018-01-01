@@ -8,6 +8,7 @@ export const COMMENT_UP_VOTE = 'COMMENT_UP_VOTE';
 export const COMMENT_DOWN_VOTE = 'COMMENT_DOWN_VOTE';
 export const COMMENT_DELETE = 'COMMENT_DELETE';
 export const COMMENT_EDIT = 'COMMENT_EDIT';
+export const COMMENT_ADD = 'COMMENT_ADD';
 
 export function commentSetList(commentList) {
   return {
@@ -43,5 +44,12 @@ export function commentEdit(id, timestamp, body) {
     id,
     timestamp,
     body
+  };
+}
+
+export function commentAdd(comment) {
+  return {
+    type: COMMENT_ADD,
+    comment
   };
 }
