@@ -13,7 +13,7 @@ You need to install all the dependencies of the project before trying to run it:
     npm install
 
 It requires [this API server](https://github.com/udacity/reactnd-project-readable-starter.git)
-to work.
+to work. It's been developed against commit `ceeb69e`.
 
 Launching
 ---------
